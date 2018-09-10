@@ -20,6 +20,6 @@
   http://localhost:8888/phpMyAdmin/
 
 1. サイトを開く 
-  - http://localhost:8888/Bookrus/view/top.php
-  - ID: test@test
-  - password: test
+  i. http://localhost:8888/Bookrus/view/top.php
+    ID: test@test
+    password: test

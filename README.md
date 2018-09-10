@@ -19,7 +19,7 @@
 1. phpmyadminにBookrus.sqlをインポート
   http://localhost:8888/phpMyAdmin/
 
-1. サイトを開く 
-  i. http://localhost:8888/Bookrus/view/top.php
-    ID: test@test
-    password: test
+1. サイトを開く  
+  http://localhost:8888/Bookrus/view/top.php  
+  ID: test@test  
+  password: test  

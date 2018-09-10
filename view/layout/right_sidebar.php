@@ -16,6 +16,7 @@
     </form>
   </div>
 
+
   <!-- http://bootsnipp.com/snippets/featured/new-style-alerts -->
   <!-- あなたのランキング -->
   <div>

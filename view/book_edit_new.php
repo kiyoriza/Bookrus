@@ -3,8 +3,6 @@ session_start();
 require('../dbconnect.php');
 require('../function/login_check.php');
 require('../function/get_categories.php');
-var_dump($categories);
-
 
 if (!empty($_POST)) {
     $_SESSION['title']=$_POST['title'];
@@ -72,7 +70,6 @@ if (!empty($_POST['register'])) {
 <head>
   <!-- 共通リンク -->
   <?php require('layout/common_links.php'); ?>
-  <!-- Original css -->
   <!-- ユーザーアイコンのcss -->
   <!-- http://bootsnipp.com/snippets/featured/user-detail -->
   <link href="../assets/css/book_user.css" rel="stylesheet">
@@ -92,78 +89,76 @@ if (!empty($_POST['register'])) {
   <title>Bookrus-知らない本と出会う-</title>
 </head>
 <body>
-
   
 <?php require('layout/header.php'); ?>
 
-  <div class="container">
-    <div class="row">
-      <?php require('layout/left_sidebar.php') ?>
+<div class="container">
+  <div class="row">
+    <?php require('layout/left_sidebar.php') ?>
 
-      <div class="col-sm-10 col-md-8 col-lg-8" style="margin-top: 70px; padding-left: 90px; padding-right: 70px; ">
-        <!-- ユーザーアイコン -->
-          <div class="media">
-            <a class="pull-left" href="#">
-            <!-- ログインユーザー画像表示 -->
-            <img class="media-object dp img-circle" src="../member_picture/<?php echo $login_user['picture_path']; ?>" style="width: 100px;height:100px;">
-            </a>
-            <div class="media-body">
-              <br>
-              <br>
-              <h4 class="media-heading"><?php echo $login_user['user_name']; ?>さんの本の新規登録</h4>
-              <hr style="margin:8px auto">
-            </div>
+    <div class="col-sm-10 col-md-8 col-lg-8" style="margin-top: 70px; padding-left: 90px; padding-right: 70px; ">
+      <!-- ユーザーアイコン -->
+        <div class="media">
+          <a class="pull-left" href="#">
+          <!-- ログインユーザー画像表示 -->
+          <img class="media-object dp img-circle" src="../member_picture/<?php echo $login_user['picture_path']; ?>" style="width: 100px;height:100px;">
+          </a>
+          <div class="media-body">
+            <br>
+            <br>
+            <h4 class="media-heading"><?php echo $login_user['user_name']; ?>さんの本の新規登録</h4>
+            <hr style="margin:8px auto">
           </div>
+        </div>
 
-        <form method="POST" action="" class="form-horizontal">
-          <?php for ($i=0; $i < $c; $i++) :  ?>
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <h4>以下の本でお間違いないですか？</h4>
+      <form method="POST" action="" class="form-horizontal">
+        <?php for ($i=0; $i < $c; $i++) :  ?>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4>以下の本でお間違いないですか？</h4>
+            <br>
+            <br>
+            <!-- <div> -->
+            <div class="col-lg-12 col-md-12">
+            <?php if(!empty($image[$i])): ?>
+              <img src="<?php echo $image[$i]; ?>" width="200px" height="300px" alt="" align="left" class="space">
+            <?php else: ?>
+              <img src="../assets/no_cover_thumb.gif"><br>
+            <?php endif; ?>
               <br>
-              <br>
-              <!-- <div> -->
-              <div class="col-lg-12 col-md-12">
-              <?php if(!empty($image[$i])): ?>
-                <img src="<?php echo $image[$i]; ?>" width="200px" height="300px" alt="" align="left" class="space">
-              <?php else: ?>
-                <img src="../assets/no_cover_thumb.gif"><br>
-              <?php endif; ?>
-                <br>
-                <div class="title"><?php echo $title[$i]; ?></div>
-                <div class="author">（著）<?php echo $author[$i]; ?></div>
-                <div>この本を選択:
-                  <?php $data = $author[$i] . '+' . $id[$i] . '+' . $image[$i];?>
-                  <input type="radio" name="data" value="<?php echo $data; ?>">
-                  <br>
-                </div>
+              <div class="title"><?php echo $title[$i]; ?></div>
+              <div class="author">（著）<?php echo $author[$i]; ?></div>
+              <div>この本を選択:
+                <?php $data = $author[$i] . '+' . $id[$i] . '+' . $image[$i];?>
+                <input type="radio" name="data" value="<?php echo $data; ?>">
                 <br>
               </div>
+              <br>
             </div>
           </div>
+        </div>
+        <?php endfor; ?>
+        <div>この本を選択:
+          <?php for($i=0; $i < $b; $i++):?>
+            <?php echo $unselected_categories[$i]['name']; ?>
+            <input type="radio" name="category_id" value="<?php echo $unselected_categories[$i]['category_id']; ?>">
           <?php endfor; ?>
-          <div>この本を選択:
-            <?php for($i=0; $i < $b; $i++):?>
-              <?php echo $unselected_categories[$i]['name']; ?>
-              <input type="radio" name="category_id" value="<?php echo $unselected_categories[$i]['category_id']; ?>">
-            <?php endfor; ?>
-          </div>
-          <div class="col-lg-12 col-md-12">
-            <br>
-            <input type="hidden" name="register" value="本を登録">
-            <input name="title" type="hidden" class="form-control" id="title" placeholder="タイトル" value="<?php echo $_SESSION['title']; ?>">
-            <input name="phrase" type="hidden" class="form-control" id="phrase" placeholder="フレーズ" value="<?php echo $_SESSION['phrase']; ?>">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-check" aria-hidden="true"></i>登録</button>
-          </div>
-        </form>
-        <!-- ここまでが本の編集のコード -->
-      </div><!-- col-xs-8 閉じタグ-->
+        </div>
+        <div class="col-lg-12 col-md-12">
+          <br>
+          <input type="hidden" name="register" value="本を登録">
+          <input name="title" type="hidden" class="form-control" id="title" placeholder="タイトル" value="<?php echo $_SESSION['title']; ?>">
+          <input name="phrase" type="hidden" class="form-control" id="phrase" placeholder="フレーズ" value="<?php echo $_SESSION['phrase']; ?>">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-check" aria-hidden="true"></i>登録</button>
+        </div>
+      </form>
+      <!-- ここまでが本の編集のコード -->
+    </div><!-- col-xs-8 閉じタグ-->
 
+    <?php require('layout/right_sidebar.php') ?>
 
-
-      <?php require('layout/right_sidebar.php') ?>
-    </div><!-- row 閉じタグ -->
-  </div><!-- container 閉じタグ -->
+  </div><!-- row 閉じタグ -->
+</div><!-- container 閉じタグ -->
 
 
   <script src="../assets/js/jquery-3.1.1.js"></script>

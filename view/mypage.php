@@ -111,9 +111,6 @@ while ($toroku_book = $stmt4->fetch(PDO::FETCH_ASSOC)){
                  'score_like' => $book_mark['cnt']
                );
 }
-// var_dump($toroku_books);
-
-
 
 require('../function/bookmark_func.php');
 // var_dump($bookmarks);
@@ -143,7 +140,6 @@ require('../function/finish_reading_func.php');
 
   <div class="container">
     <div class="row">
-
       <?php require('layout/left_sidebar.php'); ?>
 
       <div class="col-sm-10 col-md-8 col-lg-8" style="margin-top: 70px; padding-left: 90px; padding-right: 70px; ">
@@ -212,8 +208,7 @@ require('../function/finish_reading_func.php');
         </div><!--.Carousel-->
 
 
-<!-- 2行目 -->
-
+        <!-- 2行目 -->
         <div id="Carousel2" class="carousel slide">
 
             <h2>ブックマーク</h2>
@@ -269,9 +264,7 @@ require('../function/finish_reading_func.php');
           <a data-slide="next" href="#Carousel2" class="right carousel-control">›</a>
         </div><!--.Carousel-->
 
-
-<!-- 3行目 -->
-
+        <!-- 3行目 -->
         <div id="Carousel3" class="carousel slide">
 
             <h2>読破数</h2>

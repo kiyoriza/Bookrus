@@ -4,18 +4,18 @@ require('../dbconnect.php');
 require('../user_info.php');
 require('../function/get_categories.php');
 
-  // ヒストリの取得
-  $sql = 'SELECT * FROM `history` WHERE `user_id`=?';
-  $history_data = array($login_user_info['user_id']);
-  $history_stmt = $dbh->prepare($sql);
-  $history_stmt->execute($history_data);
-  while ($history = $history_stmt->fetch(PDO::FETCH_ASSOC)) {
-    // echo $history['book_id'];
-  }
+// ヒストリの取得
+$sql = 'SELECT * FROM `history` WHERE `user_id`=?';
+$history_data = array($login_user_info['user_id']);
+$history_stmt = $dbh->prepare($sql);
+$history_stmt->execute($history_data);
+while ($history = $history_stmt->fetch(PDO::FETCH_ASSOC)) {
+  // echo $history['book_id'];
+}
 
-  $sql = 'SELECT * FROM `books`';
-  $stmt = $dbh->prepare($sql);
-  $stmt->execute();
+$sql = 'SELECT * FROM `books`';
+$stmt = $dbh->prepare($sql);
+$stmt->execute();
 
 
 // アンバサダーランキング配列
@@ -169,27 +169,7 @@ if (!empty($_POST['like'])) {
     }
 }
 
-
-
-    // $finish_reading_id = $book['book_id'];
-    // $sql = 'SELECT COUNT(*) AS `cnt` FROM `finish_reading` WHERE book_id=?';
-    // $data = array($finish_reading_id);
-    // $finish_reading_stmt = $dbh->prepare($sql);
-    // $finish_reading_stmt->execute($data);
-    // $finish_reading = $finish_reading_stmt->fetch(PDO::FETCH_ASSOC);
-
-    // $book_mark_id = $book['book_id'];
-    // $sql = 'SELECT COUNT(*) AS `cnt` FROM `bookmark` WHERE book_id=?';
-    // $data_book_mark = array($book_mark_id);
-    // $book_mark_stmt = $dbh->prepare($sql);
-    // $book_mark_stmt->execute($data_book_mark);
-    // $book_mark = $book_mark_stmt->fetch(PDO::FETCH_ASSOC);
-
-
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -241,10 +221,8 @@ if (!empty($_POST['like'])) {
 
   <div class="container">
     <div class="row">
-
       <?php require('layout/left_sidebar.php'); ?>
-
-
+      
       <div class="col-sm-10 col-md-8 col-lg-8" style="margin-top: 70px; padding-left: 90px; padding-right: 70px; ">
 
 

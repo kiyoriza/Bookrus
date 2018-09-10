@@ -1,21 +1,21 @@
 <?php
-  session_start();
-  require('../dbconnect.php');
-  require('../user_info.php');
-  require('../function/get_categories.php');
+session_start();
+require('../dbconnect.php');
+require('../user_info.php');
+require('../function/get_categories.php');
 
-  // ヒストリの取得
-  $sql = 'SELECT * FROM `history` WHERE `user_id`=?';
-  $history_data = array($login_user_info['user_id']);
-  $history_stmt = $dbh->prepare($sql);
-  $history_stmt->execute($history_data);
-  while ($history = $history_stmt->fetch(PDO::FETCH_ASSOC)) {
-    // echo $history['book_id'];
-  }
+// ヒストリの取得
+$sql = 'SELECT * FROM `history` WHERE `user_id`=?';
+$history_data = array($login_user_info['user_id']);
+$history_stmt = $dbh->prepare($sql);
+$history_stmt->execute($history_data);
+while ($history = $history_stmt->fetch(PDO::FETCH_ASSOC)) {
+  // echo $history['book_id'];
+}
 
-  $sql = 'SELECT * FROM `books`';
-  $stmt = $dbh->prepare($sql);
-  $stmt->execute();
+$sql = 'SELECT * FROM `books`';
+$stmt = $dbh->prepare($sql);
+$stmt->execute();
 
 
 // アンバサダーランキング配列
@@ -122,102 +122,96 @@ for ($i=0; $i < count($ranking_users); $i++) {
   <!-- Original css -->
   <link href="../assets/css/main.css" rel="stylesheet">
 
-
   <title>Bookrus-知らない本と出会う-</title>
 </head>
 <body>
-
   <?php require('layout/header.php'); ?>
 
   <div class="container">
     <div class="row">
-
-    <?php require('layout/left_sidebar.php'); ?>
+      <?php require('layout/left_sidebar.php'); ?>
 
       <div class="col-xs-1"></div>
-
-
       <div class="col-sm-8 col-md-6 col-lg-6" style="margin-top: 30px; padding: 10px 30px;">
 
         <!-- ここにコードを書いてください！！ -->
         <!-- http://bootsnipp.com/snippets/featured/simple-contact-form -->
         <!-- 本の編集 -->
-            <div class="form-area2">
-                <form role="form" method="POST" action="">
-                <br style="clear:both">
-                  <h3 style="margin-bottom: 60px; text-align: center;">プロフィールの編集</h3>
-                  <div class="form-group">
-                    名前
-                    <input type="text" class="form-control" id="name" name="name" placeholder="名前" required style="width: 250px;">
-                  </div>
-                  <div class="form-group">
-                    メールアドレス
-                    <input type="email" class="form-control" id="email" name="email" placeholder="メールアドレス" required style="width: 400px;">
-                  </div>
-                  <div class="form-group">
-                    パスワード
-                    <input type="password" class="form-control" id="password" name="password" placeholder="パスワード" required style="width: 250px;">
-                  </div>
-                  <div class="form-group">
-                    パスワード再入力
-                    <input type="password" class="form-control" id="password" name="password" placeholder="パスワード" required style="width: 250px;">
-                  </div>
-                  <div class="form-group">
-                  <!-- <textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea> -->
-                  <h3>現在の画像</h3>
-                  <img src="member_picture/201703010000yoh.jpg" width="150">
-                      <!-- <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span> -->
-                  <input type="file" name="picture_path" id="picture_path" placeholder="変更する画像">
-                  </div>
+        <div class="form-area2">
+            <form role="form" method="POST" action="">
+            <br style="clear:both">
+              <h3 style="margin-bottom: 60px; text-align: center;">プロフィールの編集</h3>
+              <div class="form-group">
+                名前
+                <input type="text" class="form-control" id="name" name="name" placeholder="名前" required style="width: 250px;">
+              </div>
+              <div class="form-group">
+                メールアドレス
+                <input type="email" class="form-control" id="email" name="email" placeholder="メールアドレス" required style="width: 400px;">
+              </div>
+              <div class="form-group">
+                パスワード
+                <input type="password" class="form-control" id="password" name="password" placeholder="パスワード" required style="width: 250px;">
+              </div>
+              <div class="form-group">
+                パスワード再入力
+                <input type="password" class="form-control" id="password" name="password" placeholder="パスワード" required style="width: 250px;">
+              </div>
+              <div class="form-group">
+              <!-- <textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea> -->
+              <h3>現在の画像</h3>
+              <img src="member_picture/201703010000yoh.jpg" width="150">
+                  <!-- <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span> -->
+              <input type="file" name="picture_path" id="picture_path" placeholder="変更する画像">
+              </div>
 
-                  <!-- http://bootsnipp.com/snippets/8A2vZ -->
-                  <!-- checkbox -->
-                  <!-- <form class="form-horizontal"> -->
-                          <div class="form-group">
-                                <!-- <label class="col-md-2 control-label" for="Checkboxes">Checkboxes</label>   -->
+              <!-- http://bootsnipp.com/snippets/8A2vZ -->
+              <!-- checkbox -->
+              <!-- <form class="form-horizontal"> -->
+              <div class="form-group">
+                <!-- <label class="col-md-2 control-label" for="Checkboxes">Checkboxes</label>   -->
+                <div class="col-md-10 columns" style="padding-left: 1px;">
+                  <label class="checkbox-inline" for="Checkboxes_Apple">
+                    <input type="checkbox" name="Checkboxes" id="Checkboxes_Apple" value="Apple">
+                    現在のカテゴリ
+                  </label>
+                  <label class="checkbox-inline" for="Checkboxes_Orange">
+                    <input type="checkbox" name="Checkboxes" id="Checkboxes_Orange" value="Orange">
+                    Orange
+                  </label>
+                  <label class="checkbox-inline" for="Checkboxes_Bananas">
+                    <input type="checkbox" name="Checkboxes" id="Checkboxes_Bananas" value="Bananas">
+                    Banana
+                  </label>
+                  <label class="checkbox-inline" for="Checkboxes_Kumquats">
+                    <input type="checkbox" name="Checkboxes" id="Checkboxes_Kumquats" value="Kumquats">
+                    Kumquat
+                  </label>
+                  <span class="additional-info-wrap">
+                      <label class="checkbox-inline" for="Checkboxes_Grape">
+                        <input type="checkbox" name="Checkboxes" id="Checkboxes_Grape" value="Grape">
+                        Grape
+                      </label>
+                      <div class="additional-info hide">
+                            <input type="text" id="CheckboxesNameOfGrape" name="CheckboxesNameOfGrape" placeholder="Name of Grape" class="form-control" disabled="">
+                      </div>
+                  </span>
+                  <span class="additional-info-wrap">
+                      <label class="checkbox-inline" for="Checkboxes_Other">
+                        <input type="checkbox" name="Checkboxes" id="Checkboxes_Other" value="Other">
+                        Other
+                      </label>
+                      <div class="additional-info hide">
+                            <input type="text" id="CheckboxesOther" name="CheckboxesOther" placeholder="Describe" class="form-control" disabled="">
+                      </div>
+                  </span>
+                </div>
+              </div>
 
-                                <div class="col-md-10 columns" style="padding-left: 1px;">
-                                      <label class="checkbox-inline" for="Checkboxes_Apple">
-                                        <input type="checkbox" name="Checkboxes" id="Checkboxes_Apple" value="Apple">
-                                        現在のカテゴリ
-                                      </label>
-                                      <label class="checkbox-inline" for="Checkboxes_Orange">
-                                        <input type="checkbox" name="Checkboxes" id="Checkboxes_Orange" value="Orange">
-                                        Orange
-                                      </label>
-                                      <label class="checkbox-inline" for="Checkboxes_Bananas">
-                                        <input type="checkbox" name="Checkboxes" id="Checkboxes_Bananas" value="Bananas">
-                                        Banana
-                                      </label>
-                                      <label class="checkbox-inline" for="Checkboxes_Kumquats">
-                                        <input type="checkbox" name="Checkboxes" id="Checkboxes_Kumquats" value="Kumquats">
-                                        Kumquat
-                                      </label>
-                                      <span class="additional-info-wrap">
-                                          <label class="checkbox-inline" for="Checkboxes_Grape">
-                                            <input type="checkbox" name="Checkboxes" id="Checkboxes_Grape" value="Grape">
-                                            Grape
-                                          </label>
-                                          <div class="additional-info hide">
-                                                <input type="text" id="CheckboxesNameOfGrape" name="CheckboxesNameOfGrape" placeholder="Name of Grape" class="form-control" disabled="">
-                                          </div>
-                                      </span>
-                                      <span class="additional-info-wrap">
-                                          <label class="checkbox-inline" for="Checkboxes_Other">
-                                            <input type="checkbox" name="Checkboxes" id="Checkboxes_Other" value="Other">
-                                            Other
-                                          </label>
-                                          <div class="additional-info hide">
-                                                <input type="text" id="CheckboxesOther" name="CheckboxesOther" placeholder="Describe" class="form-control" disabled="">
-                                          </div>
-                                      </span>
-                                  </div>
-                              </div>
+            <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right" style="margin-top: 120px">編集する</button>
+            </form>
 
-                <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right" style="margin-top: 120px">編集する</button>
-                </form>
-
-            </div>
+        </div>
       </div><!-- col-xs-6 閉じタグ-->
 
       <div class="col-xs-1"></div>

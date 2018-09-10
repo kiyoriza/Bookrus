@@ -193,15 +193,11 @@ if (!empty($_POST['like'])) {
   <title>Bookrus-知らない本と出会う-</title>
 </head>
 <body>
-
-
- <?php require('layout/header.php'); ?>
+  <?php require('layout/header.php'); ?>
 
   <div class="container">
     <div class="row">
-
       <?php require('layout/left_sidebar.php'); ?>
-
 
       <div class="col-sm-10 col-md-8 col-lg-8" style="margin-top: 70px; padding-left: 90px; padding-right: 70px; ">
 
@@ -316,14 +312,9 @@ if (!empty($_POST['like'])) {
             <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
           </div><!--.Carousel-->
         <?php endif; ?>
-
       </div><!-- col-xs-8 閉じタグ-->
-
-
-
-
-
       <?php require('layout/right_sidebar.php'); ?>
+
     </div><!-- row 閉じタグ -->
   </div><!-- container 閉じタグ -->
 

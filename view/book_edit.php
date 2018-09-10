@@ -2,24 +2,19 @@
 session_start();
 require('../function/dbconnect.php');
 require('../function/user_info.php');
-
-
-// dashbord　ここから
 require('../function/getcategories.php');
+ 
+$sql = 'SELECT * FROM `history` WHERE `user_id`=?';
+$history_data = array($login_user_info['user_id']);
+$history_stmt = $dbh->prepare($sql);
+$history_stmt->execute($history_data);
+while ($history = $history_stmt->fetch(PDO::FETCH_ASSOC)) {
+  // echo $history['book_id'];
+}
 
-  
-  // ヒストリの取得
-  $sql = 'SELECT * FROM `history` WHERE `user_id`=?';
-  $history_data = array($login_user_info['user_id']);
-  $history_stmt = $dbh->prepare($sql);
-  $history_stmt->execute($history_data);
-  while ($history = $history_stmt->fetch(PDO::FETCH_ASSOC)) {
-    // echo $history['book_id'];
-  }
-
-  $sql = 'SELECT * FROM `books`';
-  $stmt = $dbh->prepare($sql);
-  $stmt->execute();
+$sql = 'SELECT * FROM `books`';
+$stmt = $dbh->prepare($sql);
+$stmt->execute();
 
 
 // アンバサダーランキング配列
@@ -150,7 +145,6 @@ if ($count_finish_reading = $count_finish_reading_stmt->fetch(PDO::FETCH_ASSOC))
 <head>
   <!-- 共通リンク -->
   <?php require('layout/common_links.php'); ?>
-  <!-- Original css -->
   <!-- ユーザーアイコンのcss -->
   <!-- http://bootsnipp.com/snippets/featured/user-detail -->
   <link href="assets/css/book_user.css" rel="stylesheet">
@@ -169,145 +163,14 @@ if ($count_finish_reading = $count_finish_reading_stmt->fetch(PDO::FETCH_ASSOC))
   <!-- ようさんOriginal css -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-
   <title>Bookrus-知らない本と出会う-</title>
 </head>
 <body>
-
-  <header class="header">
-
-    <!-- http://bootsnipp.com/snippets/featured/rainbow-nav -->
-    <!-- Rainbow Nav バー -->
-    <div class="navbar-wrapper">
-        <div class="container-fluid">
-            <nav class="navbar navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="dashboard.php" style="font-size: 40px; padding-top: 20px;">Bookrus</a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="layout.php" class="" style="padding-top: 25px;">ランキング</a></li>
-                            <li class=" dropdown">
-                                <a href="mypage.php" role="button" style="padding-top: 25px;">マイページ</a>
-                            </li>
-                            <li class=" dropdown"></li>
-                        </ul>
-                        <ul class="nav navbar-nav pull-right">
-                              <!-- http://bootsnipp.com/snippets/featured/account-in-navbar -->
-                              <!-- ログアウト -->
-                                          <ul class="nav navbar-nav navbar-right">
-                                              <li class="dropdown">
-                                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                      <strong>
-                                                        <!-- プロフィール画像 -->
-                                                        <!-- <div class="profile-header-container">  -->
-                                                            <div class="profile-header-img">
-                                                                <img class="img-circle" src="member_picture/<?php echo $login_user_info['picture_path']; ?>" />
-                                                                <span class="profile-name"><?php echo $login_user_info['user_name']; ?></span>
-                                                            </div>
-                                                      </strong>
-                                                  </a>
-                                                  <ul class="dropdown-menu">
-                                                      <li>
-                                                          <div class="navbar-login">
-                                                              <div class="row">
-                                                                  <div class="col-lg-4">
-                                                                      <p class="text-center">
-                                                                          <img src="member_picture/<?php echo $login_user_info['picture_path']; ?>" width="100">
-                                                                      </p>
-                                                                  </div>
-                                                                  <div class="col-lg-8">
-                                                                      <p class="text-left"><strong><?php echo $login_user_info['user_name']; ?></strong></p>
-                                                                      <p class="text-left">
-                                                                          <a href="logout.php" class="btn btn-primary btn-block btn-sm" id="red-btn">ログアウト</a>
-                                                                      </p>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                      </li>
-                                                      <li class="divider"></li>
-                                                      <li>
-                                                      </li>
-                                                  </ul>
-                                              </li>
-                                          </ul>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-
-    <!-- http://bootsnipp.com/snippets/featured/custom-search-input -->
-    <!-- Custom Search input 検索バー -->
-    <div class="container" id="search_container">
-      <div class="row">
-        <div class="col-sm-6 col-md-6 col-lg-7">
-          <div id="custom-search-input">
-            <form action="" method="" class="form-inline">
-              <div class="input-group col-md-12">
-                <input name="search_word" type="text" class="form-control input-lg" placeholder="検索">
-                <span class="input-group-btn" style="width: 50px; height: 40px;">
-                  <button type="submit" class="btn btn-info btn-lg">
-                    <i class="glyphicon glyphicon-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </header>
+  <?php require('layout/header.php'); ?>
 
   <div class="container">
     <div class="row">
-
-      <div class="col-xs-2">
-
-          <div class="login-container">
-              <div id="output"></div>
-              <a href=""><img src="assets/img/content2.jpeg" width="120px" height="160px"></a>
-              <div class="form-box">
-
-                <h4>タイトル</h4><br>
-
-                <h4>フレーズ</h4><br>
-
-                <h4>著者名</h4>
-              </div>
-          </div>
-
-          <!-- http://bootsnipp.com/snippets/featured/expandable-panel-list -->
-          <!-- ランキング表示 -->
-          <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> -->
-
-            <div class="panel panel-default" id="panel-default">
-                  <div class="panel-heading">
-                      <h3 class="panel-title">カテゴリ</h3>
-                  </div>
-                  <ul class="list-group">
-                    <?php for($i=0; $i < $b; $i++):?>
-                    <?php // for(初期化式(一回しか読み込まれない); 条件式; 変化式):?>
-                      <li class="list-group-item">
-                          <div class="row toggle" id="dropdown-detail-1" data-toggle="detail-1">
-                              <a href="dashboard.php?category_id=<?php echo $unselected_categories[$i]['category_id']; ?>" style="color: black; text-decoration: none;"><?php echo $unselected_categories[$i]['name']; ?></a>
-                          </div>
-                      </li>
-                    <?php endfor; ?>
-                  </ul>
-            </div>
-
-      </div><!-- col-xs-2 閉じタグ-->
-
+      <?php require('layout/left_sidebar.php'); ?>      
 
       <div class="col-sm-10 col-md-8 col-lg-8" style="margin-top: 70px; padding-left: 90px; padding-right: 70px; ">
         <!-- ここにコードを書いてください！！ -->
@@ -400,61 +263,11 @@ if ($count_finish_reading = $count_finish_reading_stmt->fetch(PDO::FETCH_ASSOC))
         <?php endif; ?>
         </div>
         </form>
-  <!-- ここまでが本の編集のコード -->
+        <!-- ここまでが本の編集のコード -->
       </div><!-- col-xs-8 閉じタグ-->
 
+      <?php require('right_sidebar'); ?>
 
-
-      <div class="hidden-sm col-md-2 col-lg-2" style="">
-
-          <!-- http://bootsnipp.com/snippets/featured/simple-contact-form -->
-          <!-- Simple Contact Form 本の登録 -->
-          <div class="form-area" style="background-image: url(assets/img/book2.jpg); background-size: cover; opacity: 0.9; height: 250px">
-              <form role="form" class="form" method="POST" action="book_edit.php">
-              <br style="clear:both">
-                         <h3 style="margin-bottom: 25px; text-align: center; font-size: 20px; font-weight: bold; color: white; padding-left: 10px;">本の登録</h3>
-                  <div class="form-group">
-                  <input type="text" class="form-control" id="name" name="title" placeholder="本のタイトル" required>
-                </div>
-
-                <div class="form-group">
-                  <input type="text" class="form-control" id="mobile" name="phrase" placeholder="フレーズ" required>
-                </div>
-
-              <!-- <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" style="background-color: black; border-color: black;">登録する</button> -->
-                <input type="submit" value="登録する" class="btn btn-primary pull-right" style="background-color: black; border-color: black;">
-              </form>
-          </div>
-
-
-          <!-- http://bootsnipp.com/snippets/featured/new-style-alerts -->
-          <!-- あなたのランキング -->
-          <div>
-          <h4 style="padding-bottom: 40px; padding-left: 15px;">
-            あなたは <?php echo $_SESSION['rank']; ?> 位です</h4>
-          </div>
-          <!-- http://bootsnipp.com/snippets/featured/expandable-panel-list -->
-          <!-- ランキング表示 -->
-          <div class="panel panel-default" id="ranking">
-
-          <div class="panel-heading">
-              <h3 class="panel-title">ランキング順位</h3>
-          </div>
-            <ul class="list-group">
-              <?php for ($i=0; $i < 5; $i++) :?>
-                <li class="list-group-item">
-                    <div class="row toggle" id="dropdown-detail-1" data-toggle="detail-1">
-                        <a href="mypage.php?user_id=<?php echo $ranking_users[$i]['user_id'];?>" style="color: black; text-decoration: none;">
-                            <?php echo $ranking_users[$i]['rank']; ?> 位<br>
-                            <?php echo $ranking_users[$i]['user_name']; ?>
-                        </a>
-                    </div>
-                </li>
-              <?php endfor; ?>
-            </ul>
-          </div>
-
-      </div><!-- col-xs-2 閉じタグ-->
     </div><!-- row 閉じタグ -->
   </div><!-- container 閉じタグ -->
 

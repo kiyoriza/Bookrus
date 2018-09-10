@@ -190,19 +190,14 @@ $rank_last = $_SESSION['rank'] + 1;
   <title>Bookrus-知らない本と出会う-</title>
 </head>
 <body>
-
-
   <?php require('layout/header.php'); ?>
 
   <div class="container">
     <div class="row">
       <?php require('layout/left_sidebar.php'); ?>
 
-
       <div class="col-sm-10 col-md-8 col-lg-8" style="margin-top: 70px; padding-left: 90px; padding-right: 70px; ">
-
         <!-- ここにコードを書いてください！！ -->
-
         <div class="ranking">
           <p class="rank">
             アンバサダーランキング
@@ -578,9 +573,7 @@ $rank_last = $_SESSION['rank'] + 1;
             </div>
           </div><!-- rank2 閉じタグ-->
         </div>
-
       </div><!-- col-xs-8 閉じタグ-->
-
 
       <?php require('layoput/right_sidebar.php'); ?>
     </div><!-- row 閉じタグ -->

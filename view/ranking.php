@@ -112,9 +112,7 @@ for ($i = 0; $i < $c; $i++) {
     <div class="row">
       <?php require('layout/left_sidebar.php'); ?>
       <div class="col-sm-10 col-md-8 col-lg-8" style="margin-top: 70px; padding-left: 90px; padding-right: 70px; ">
-    
         <!-- ここにコードを書いてください！！ -->
-        
         <div class="ranking">
           <p class="rank">
             アンバサダーランキング
@@ -462,9 +460,6 @@ for ($i = 0; $i < $c; $i++) {
         </div><!--  ranking 閉じタグ -->
 
       </div><!-- col-xs-8 閉じタグ-->
-
-
-
       <?php require('layout/right_sidebar.php'); ?>
     </div><!-- row 閉じタグ -->
   </div><!-- container 閉じタグ -->

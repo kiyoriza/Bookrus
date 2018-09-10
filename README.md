@@ -14,7 +14,7 @@
 ## 環境構築
 1. [MAMPをダウンロード](https://www.mamp.info/en/downloads/)
 
-2. git clone https://github.com/kiyoriza/Bookrus.git
+2. `git clone https://github.com/kiyoriza/Bookrus.git`
 
 3. phpmyadminにBookrus.sqlをインポート
   http://localhost:8888/phpMyAdmin/

@@ -1,5 +1,5 @@
 # Bookrus
-## [本番サーバーに上がっているもの] (https://nexseed.net/portfolio/Bookrus/top.php)
+[本番サーバーに上がっているもの](https://nexseed.net/portfolio/Bookrus/top.php)
 
 - コンセプト
 
@@ -12,16 +12,14 @@
 
 
 ## 環境構築
-1. [MAMPをダウンロード] (https://www.mamp.info/en/downloads/)
+1. [MAMPをダウンロード](https://www.mamp.info/en/downloads/)
 
-2. https://github.com/kiyoriza/Bookrus.git
+2. git clone https://github.com/kiyoriza/Bookrus.git
 
 3. phpmyadminにBookrus.sqlをインポート
-
-http://localhost:8888/phpMyAdmin/
+  http://localhost:8888/phpMyAdmin/
 
 4. サイトを開く 
-
-http://localhost:8888/Bookrus/view/top.php
-ID: test@test
-password: test
+  http://localhost:8888/Bookrus/view/top.php
+  ID: test@test
+  password: test

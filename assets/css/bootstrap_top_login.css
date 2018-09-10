@@ -1,0 +1,35 @@
+/*ログイン画面*/
+/*Login*/
+div.panel-title{
+  color: white;
+  background-color: gray;
+  border-color: gray;
+}
+#panel-heading{
+  background-color: gray;
+  border-color: gray;
+  /*border-top-color: gray;
+  border-left-color: gray;*/
+}
+div.panel{
+  border-color: gray;
+}
+/*新規登録*/
+#hoge1{
+  margin-top: -100px;
+}
+a.btn-success{
+  background-color: gray;
+  border-color: gray;
+  color: white;
+}
+p.letter3{
+  font-size: 14px;
+  margin-bottom: 2px;
+  margin-left: 0px;
+}
+
+#letter4{
+  font-size: 5px;
+  margin-top: 4px;
+}

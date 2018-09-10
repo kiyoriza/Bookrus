@@ -1,0 +1,14 @@
+.panel-default {
+	border-color: white;
+	background-color: white;
+
+}
+
+.panel-default > div.panel-heading {
+	background-color: white;
+	border-color: #008000;
+}
+
+.list-group-item {
+	padding-left: 30px;
+}

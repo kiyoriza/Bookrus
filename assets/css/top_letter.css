@@ -1,0 +1,45 @@
+p.letter {
+  position: relative;
+  padding: 1em 0;
+  color: white;
+  font-size: 40px;
+  left: 60px;
+  top:25px;
+  padding-bottom: 0px;
+}
+p.letter::before,
+p.letter::after {
+  position: absolute;
+  left: 0px;
+  content: '';
+  width: 91%;
+  height: 6px;
+  box-sizing: border-box;
+}
+p.letter::after {
+  bottom: -4px;
+  border-top: 1px solid white;
+  border-bottom: 2px solid white;
+}
+p.letter2 {
+  position: relative;
+  padding: 1em 0;
+  color: white;
+  font-size: 35px;
+  left: 60px;
+  top:45px;
+}
+p.letter2::before,
+p.letter2::after {
+  position: absolute;
+  left: 0px;
+  content: '';
+  width: 91%;
+  height: 6px;
+  box-sizing: border-box;
+}
+p.letter2::after {
+  bottom: 28px;
+  border-top: 1px solid white;
+  border-bottom: 2px solid white;
+}

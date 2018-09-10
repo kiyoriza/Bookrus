@@ -1,0 +1,14 @@
+.allow_toggle_btn {
+    text-align: center;
+}
+.allow_toggle_btn-all {
+    text-align: center;
+}
+
+
+td#open > a.open-btn, td#open > a.close-btn {
+    font-size: 40px;
+}
+td#open-all > a.open-btn-all, td#open-all > a.close-btn-all {
+    font-size: 40px;
+}

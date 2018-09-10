@@ -1,0 +1,28 @@
+.red {
+    color:red;
+    }
+.form-area {
+    /*background-color: white;*/
+    background-image: url(member_picture/top.jpg);
+	padding: 10px 6px 20px;
+	margin: 75px 0px 40px;
+	/*border: 1px solid GREY;*/
+	/*float: right;*/
+	width: 170px;
+
+}
+
+.form-area > .form {
+	background-image: url("member_picture/top.jpg");
+}
+
+.form-control {
+	font-size: 11px;
+	/*width: 120px;*/
+	text-align: center;
+}
+
+.form-control {
+	text-align: left;	
+}
+

@@ -1,0 +1,26 @@
+/*画像の実装*/
+body.body{
+margin-top: 0px;
+margin-left: 0px;
+margin-right: 0px;
+}
+div.top-content{
+  width: 100%;
+}
+html, body { height:100%; margin:0; }
+
+div.jumbotron{
+  background-image: url(../img/back_img.jpg);
+  background-repeat: no-repeat;
+  /*background-position: center center;*/
+  background-size: cover;
+  /*background-color: rgba(0,0,0,0.4);*/
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+}
+.wrapper {
+  background-color: rgba(0,0,0,0.4);
+  background-size: cover;
+  
+}

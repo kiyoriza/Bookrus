@@ -1,0 +1,132 @@
+
+.filterable {
+    margin-top: 15px;
+}
+.filterable .panel-heading .pull-right {
+    margin-top: -20px;
+}
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+}
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+    color: #333;
+}
+table.table tbody tr td.rank-size{
+    width: 100px;
+    padding-left: 20px;
+}
+div.rank2{
+    padding-top: 20px;
+}
+
+.menu li {
+    max-height: 0;
+    overflow-y: hidden;
+}
+
+#menu_bar01:checked ~ #links01 li,
+#menu_bar02:checked ~ #links02 li {
+    max-height: 46px;
+    opacity: 1;
+}
+.menu {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+    line-height: 1;
+}
+
+label {
+    display: block;
+    margin: 0 0 2px 0;
+    padding :12px;
+    line-height: 1;
+    color :#fff;
+    background :#007bbb;
+    cursor :pointer;
+}
+
+input {
+    display: none;
+}
+
+.menu ul {
+    margin: 0;
+    padding: 0;
+    background :#f4f4f4;
+    list-style: none;
+}
+
+.menu li {
+    max-height: 0;
+    overflow-y: hidden;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#menu_bar01:checked ~ #links01 li,
+#menu_bar02:checked ~ #links02 li {
+    max-height: 46px;
+    opacity: 1;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, 
+.table > tfoot > tr > th, .table > thead > tr > td, 
+.table > tbody > tr > td, .table > tfoot > tr > td{
+    border-top-color: white;
+}
+table.table > thead > tr > th, 
+table.table > tbody > tr > th, 
+/*table.table > tfoot > tr > th, */
+/*table.table > thead > tr > td, */
+table.table > tbody > tr > td, 
+/*table.table > tfoot > tr > td*/ {
+    padding-left: 100px;
+}
+table.table{
+    border-collapse: 0;
+}
+tbody#tbody{
+    border-top: none;
+}
+tbody#tbody2{
+    border-top: none;
+}
+tbody#tbody3{
+    border-top: none;
+}
+/*アンバサダーランキング*/
+.rank{
+    font-size: 40px;
+    margin: 120px 30px 90px 150px;
+}
+
+div.panel-primary {
+    border-color: transparent;
+}
+
+#col-xs-8{
+    padding-right: 50px;
+    padding-left: 50px;
+}

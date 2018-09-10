@@ -1,0 +1,67 @@
+html, body { height:100%; margin:0; }
+
+body{
+	background-image: url(../../img/back_img.jpg);
+	background-repeat: repeat-y;
+	margin: 0 auto;
+}
+.container {
+	background-color: rgba(0,0,0,0.4);
+	width: 100%;
+	height: 100%;
+}
+
+.col-xs-8 {
+	background: rgba(0,0,0,0);
+	border: none;
+	border-radius: none;
+	margin: 3em 0;
+}
+
+.well {
+	background: rgba(0,0,0,0);
+}
+
+ul.setup-panel li.active a.active_active {
+	background-color: #006400;
+}
+ul.setup-panel li.disabled a.disabled_disabled {
+	border: 1px #000000;
+	border-radius: 4px;
+}
+
+.form-group .input-group {
+	background-color: #ffffff;
+}
+
+.btn-lg {
+ 	background-color: #006400;
+ 	border-color: #006400;
+ 	margin: 1.5em 0;
+ }
+.btn-lg:hover {
+ 	background-color: #006400;
+ }
+
+.profile-header-container {
+	float: left;
+}
+.well .col-xs-8 {
+	float: right;
+}
+.btn_btn {
+	clear: both;
+}
+.col-xs-8 h1 {
+	color: #ffffff;
+}
+.col-xs-8 h3 {
+	color: #ff0000;
+}
+
+.form-group label{
+	color: #ffffff;
+}
+.checkbox label {
+	color: #000000;
+}

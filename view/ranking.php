@@ -19,7 +19,6 @@ while ($user = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $user_books_stmt->execute($user_book_data);
 
     $ranking_user = array();
-
     $ranking_user = array(
                   'user_id' => $user['user_id'],
                   'user_name' => $user['user_name'],

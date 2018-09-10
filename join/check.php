@@ -1,64 +1,64 @@
 <?php
-  session_start();
-  require ('../dbconnect.php');
+session_start();
+require ('../dbconnect.php');
 
-  // カテゴリ取得
-  $sql = 'SELECT * FROM `categories`';
-  $stmt = $dbh->prepare($sql);
-  $stmt->execute();
+// カテゴリ取得
+$sql = 'SELECT * FROM `categories`';
+$stmt = $dbh->prepare($sql);
+$stmt->execute();
 
-  $categories = array();
-  while (1) {
-    $record = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($record == false) {
-      break;
-    }
-    $categories[] = $record;
+$categories = array();
+while (1) {
+  $record = $stmt->fetch(PDO::FETCH_ASSOC);
+  if ($record == false) {
+    break;
   }
-  $count = count($categories);
+  $categories[] = $record;
+}
+$count = count($categories);
 
 
-  if (!isset($_SESSION['join'])){
-    header('Location: index.php');
+if (!isset($_SESSION['join'])){
+  header('Location: index.php');
+  exit();
+}
+if (!empty($_POST)) {
+  try {
+    // ユーザーデータ登録
+    $sql = 'INSERT INTO `users` SET `user_name`=?, `email`=?, `password`=?, `picture_path`=?, `created`=NOW()';
+
+    $data = array($_SESSION['join']['user_name'], $_SESSION['join']['email'], sha1($_SESSION['join']['password']), $_SESSION['join']['picture_path']);
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+
+    // ユーザーデータを取得（メールアドレスを条件に）
+    $sql = 'SELECT `user_id` FROM `users` WHERE `email`=?';
+    $data = array($_SESSION['join']['email']);
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // $user['user_id']
+
+    // 選択されたカテゴリーデータの登録（繰り返し処理）
+    $count = count($_SESSION['join']['category_id']);
+    for ($i=0; $i < $count; $i++) {
+      $sql = 'INSERT INTO `user_selected_category` SET `category_id`=?, `user_id`=?, `created`=NOW()';
+
+      $data = array($_SESSION['join']['category_id'][$i], $user['user_id']);
+
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute($data);
+    }
+
+    header('Location: thanks.php');
+    exit();
+
+  } catch (PDOException $e) {
+    echo 'SQL実行時エラー: ' . $e->getMessage();
     exit();
   }
-  if (!empty($_POST)) {
-    try {
-      // ユーザーデータ登録
-      $sql = 'INSERT INTO `users` SET `user_name`=?, `email`=?, `password`=?, `picture_path`=?, `created`=NOW()';
-
-      $data = array($_SESSION['join']['user_name'], $_SESSION['join']['email'], sha1($_SESSION['join']['password']), $_SESSION['join']['picture_path']);
-
-      $stmt = $dbh->prepare($sql);
-      $stmt->execute($data);
-
-      // ユーザーデータを取得（メールアドレスを条件に）
-      $sql = 'SELECT `user_id` FROM `users` WHERE `email`=?';
-      $data = array($_SESSION['join']['email']);
-      $stmt = $dbh->prepare($sql);
-      $stmt->execute($data);
-      $user = $stmt->fetch(PDO::FETCH_ASSOC);
-      // $user['user_id']
-
-      // 選択されたカテゴリーデータの登録（繰り返し処理）
-      $count = count($_SESSION['join']['category_id']);
-      for ($i=0; $i < $count; $i++) {
-        $sql = 'INSERT INTO `user_selected_category` SET `category_id`=?, `user_id`=?, `created`=NOW()';
-
-        $data = array($_SESSION['join']['category_id'][$i], $user['user_id']);
-
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute($data);
-      }
-
-      header('Location: thanks.php');
-      exit();
-
-    } catch (PDOException $e) {
-      echo 'SQL実行時エラー: ' . $e->getMessage();
-      exit();
-    }
-  }
+}
 
 ?>
 

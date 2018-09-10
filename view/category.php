@@ -15,8 +15,7 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 $books = array();
 $errors = array();
-while ($book = $stmt->fetch(PDO::FETCH_ASSOC)){
-    
+while ($book = $stmt->fetch(PDO::FETCH_ASSOC)){ 
     $sql = 'SELECT * FROM `categories` WHERE category_id=?';
     $data1 = array($book['category_id']);
     $category_stmt = $dbh->prepare($sql);

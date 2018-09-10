@@ -46,7 +46,6 @@ $books = array();
                 );
         }
 
-
 require('../function/get_categories.php');
 
 

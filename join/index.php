@@ -1,135 +1,135 @@
 <?php
-	session_start();
-	require ('../dbconnect.php');
+session_start();
+require ('../dbconnect.php');
 
-  // カテゴリ取得
-  $sql = 'SELECT * FROM `categories`';
-  $stmt = $dbh->prepare($sql);
-  $stmt->execute();
+// カテゴリ取得
+$sql = 'SELECT * FROM `categories`';
+$stmt = $dbh->prepare($sql);
+$stmt->execute();
 
-  $categories = array();
-  while (1) {
-    $record = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($record == false) {
-      break;
-    }
-    $categories[] = $record;
+$categories = array();
+while (1) {
+  $record = $stmt->fetch(PDO::FETCH_ASSOC);
+  if ($record == false) {
+    break;
   }
-  $count = count($categories);
+  $categories[] = $record;
+}
+$count = count($categories);
 
 
-	$user_name = '';
-	$email = '';
-	$password = '';
-  $password_check = '';
-  $category_id = '';
+$user_name = '';
+$email = '';
+$password = '';
+$password_check = '';
+$category_id = '';
 
-	if (!empty($_POST)) {
-		$user_name = $_POST['user_name'];
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-    $password_check = $_POST['password_check'];
+if (!empty($_POST)) {
+	$user_name = $_POST['user_name'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+  $password_check = $_POST['password_check'];
 
-    if (isset($_POST['category_id'])) {
-      $category_id = $_POST['category_id']; // 配列
-    } else {
-      $category_id = array();
-    }
+  if (isset($_POST['category_id'])) {
+    $category_id = $_POST['category_id']; // 配列
+  } else {
+    $category_id = array();
+  }
 
-    var_dump($category_id);
-    $selected_count = count($category_id);
+  var_dump($category_id);
+  $selected_count = count($category_id);
 
-		// フォームのバリデーション
-		$error = array();
+	// フォームのバリデーション
+	$error = array();
 
-		// ニックネーム入力チェック
-		if ($_POST['user_name'] == '') {
-			$error['user_name'] = 'blank';
-		}
-
-		// メールアドレス入力チェック
-		if ($_POST['email'] == '') {
-			$error['email'] = 'blank';
-		}
-
-		// パスワード入力チェック
-		if ($_POST['password'] == '') {
-			$error['password'] = 'blank';
-		} elseif (strlen($_POST['password']) < 4) {
-			$error['password'] = 'length';
-		}
-
-    // パスワード確認チェック
-    if ($_POST['password_check'] == '') {
-      $error['password_check'] = 'blank';
-    } elseif ($_POST['password_check'] != $_POST['password']) {
-      $error['password_check'] = 'incorrect';
-    }
-
-    // $category_id配列の要素数が0じゃないか
-    if ($selected_count > 0) {
-      //
-    } else {
-      $error['category_id'] = 'blank';
-    }
-
-		// 画像入力チェック
-		if ($_FILES['picture_path']['name'] == '') {
-			$_FILES['picture_path']['name'] = 'blank';
-		}
-
-		// プロフィール画像の拡張子チェック
-		$fileName = $_FILES['picture_path']['name'];
-
-
-		if(!empty($fileName)) {
-			$ext = substr($fileName, -3);
-			if ($ext != 'jpg' && $ext !='png' && $ext != 'gif') {
-				$error['picture_path'] = 'type';
-			}
-		}
-
-		// メール重複チェック
-		if (empty($error)) {
-      echo 'hoge1';
-			$sql = 'SELECT COUNT(*) AS `cnt` FROM `users` WHERE `email`=?';
-			$data = array($email);
-			$stmt =$dbh->prepare($sql);
-			$stmt->execute($data);
-
-			$record =$stmt->fetch(PDO::FETCH_ASSOC);
-      echo $record['cnt'];
-			if ($record['cnt'] > 0) {
-        echo 'hoge2';
-				$error['email'] = 'duplicate';
-			}
-		}
-
-    // エラーがなかったとき
-    if(empty($error)){
-      $picture_path = date('YmdHis') . $_FILES['picture_path']['name'];
-      move_uploaded_file($_FILES['picture_path']['tmp_name'],'../member_picture/' . $picture_path);
-
-
-      // セッションに値を保持する
-      $_SESSION['join'] = $_POST;
-      $_SESSION['join']['picture_path'] = $picture_path;
-      // $_SESSION['']
-
-
-      // 確認画面へ遷移
-      header('Location: check.php');
-      exit();
-    }
+	// ニックネーム入力チェック
+	if ($_POST['user_name'] == '') {
+		$error['user_name'] = 'blank';
 	}
 
-  // 書き直し処理
-  if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'rewrite'){
-    $user_name = $_SESSION['join']['user_name'];
-    $email = $_SESSION['join']['email'];
-    $category_id = $_SESSION['join']['category_id'];
-    $error['rewrite'] = 'rewrite';
+	// メールアドレス入力チェック
+	if ($_POST['email'] == '') {
+		$error['email'] = 'blank';
+	}
+
+	// パスワード入力チェック
+	if ($_POST['password'] == '') {
+		$error['password'] = 'blank';
+	} elseif (strlen($_POST['password']) < 4) {
+		$error['password'] = 'length';
+	}
+
+  // パスワード確認チェック
+  if ($_POST['password_check'] == '') {
+    $error['password_check'] = 'blank';
+  } elseif ($_POST['password_check'] != $_POST['password']) {
+    $error['password_check'] = 'incorrect';
   }
+
+  // $category_id配列の要素数が0じゃないか
+  if ($selected_count > 0) {
+    //
+  } else {
+    $error['category_id'] = 'blank';
+  }
+
+	// 画像入力チェック
+	if ($_FILES['picture_path']['name'] == '') {
+		$_FILES['picture_path']['name'] = 'blank';
+	}
+
+	// プロフィール画像の拡張子チェック
+	$fileName = $_FILES['picture_path']['name'];
+
+
+	if(!empty($fileName)) {
+		$ext = substr($fileName, -3);
+		if ($ext != 'jpg' && $ext !='png' && $ext != 'gif') {
+			$error['picture_path'] = 'type';
+		}
+	}
+
+	// メール重複チェック
+	if (empty($error)) {
+    echo 'hoge1';
+		$sql = 'SELECT COUNT(*) AS `cnt` FROM `users` WHERE `email`=?';
+		$data = array($email);
+		$stmt =$dbh->prepare($sql);
+		$stmt->execute($data);
+
+		$record =$stmt->fetch(PDO::FETCH_ASSOC);
+    echo $record['cnt'];
+		if ($record['cnt'] > 0) {
+      echo 'hoge2';
+			$error['email'] = 'duplicate';
+		}
+	}
+
+  // エラーがなかったとき
+  if(empty($error)){
+    $picture_path = date('YmdHis') . $_FILES['picture_path']['name'];
+    move_uploaded_file($_FILES['picture_path']['tmp_name'],'../member_picture/' . $picture_path);
+
+
+    // セッションに値を保持する
+    $_SESSION['join'] = $_POST;
+    $_SESSION['join']['picture_path'] = $picture_path;
+    // $_SESSION['']
+
+
+    // 確認画面へ遷移
+    header('Location: check.php');
+    exit();
+  }
+}
+
+// 書き直し処理
+if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'rewrite'){
+  $user_name = $_SESSION['join']['user_name'];
+  $email = $_SESSION['join']['email'];
+  $category_id = $_SESSION['join']['category_id'];
+  $error['rewrite'] = 'rewrite';
+}
 
 ?>
 

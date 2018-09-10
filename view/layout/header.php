@@ -2,7 +2,6 @@
 require('../dbconnect.php');
 require('../user_info.php');
 ;?>
-
 <header class="header">
 <!-- http://bootsnipp.com/snippets/featured/rainbow-nav -->
 <!-- Rainbow Nav バー -->

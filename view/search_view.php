@@ -17,7 +17,6 @@ $sql = 'SELECT * FROM `books`';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
-
 // アンバサダーランキング配列
 $ranking_users = array();
 

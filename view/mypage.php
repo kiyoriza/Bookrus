@@ -12,7 +12,6 @@ $stmt->execute();
 
 // アンバサダーランキング配列
 $ranking_users = array();
-
 $sql = 'SELECT * FROM `users`';
 $user_stmt = $dbh->prepare($sql);
 $user_stmt->execute();

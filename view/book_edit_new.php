@@ -27,7 +27,6 @@ for ($i=0; $i < $c; $i++){
         $id[] = $posts[$i]->id;
     } else {
         $id[] = 'なし';
-
     }
     if (isset($posts[$i]->volumeInfo->title)) {
         $title[] = $posts[$i]->volumeInfo->title;

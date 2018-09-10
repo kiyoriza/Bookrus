@@ -8,7 +8,7 @@
         <h4>著者名</h4>
       </div>
   </div>
-         
+     
   <div class="panel panel-default" id="panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">カテゴリ</h3>

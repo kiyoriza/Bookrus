@@ -14,28 +14,28 @@
   <title>Bookrus-知らない本と出会う-</title>
 </head>
 <body>
-<div class="container" id="wrapper">
-  <!-- プロセス -->
-  <!-- http://bootsnipp.com/snippets/featured/step-wizard-working -->
-  <div class="row form-group">
-    <div class="col-xs-2">
-    </div><!--[end].col-xs-2-->
-    <div class="col-xs-8">
-      <ul class="nav nav-pills nav-justified thumbnail setup-panel">
-        <li class="disabled"><a href="#step-1" class="disabled_disabled">
-      	  <h4 class="list-group-item-heading">会員情報の入力</h4>
-        </a></li>
-        <li class="disabled"><a href="#step-2" class="disabled_disabled">
-          <h4 class="list-group-item-heading">入力内容の確認</h4>
-        </a></li>
-        <li class="active"><a href="#step-3" class="active_active">
-          <h4 class="list-group-item-heading">登録完了</h4>
-        </a></li>
-      </ul>
-    </div><!--[end].col-xs-8-->
-    <div class="col-xs-2">
-    </div><!--[end].col-xs-2-->
-  </div><!--[end].row form-group-->
+  <div class="container" id="wrapper">
+    <!-- プロセス -->
+    <!-- http://bootsnipp.com/snippets/featured/step-wizard-working -->
+    <div class="row form-group">
+      <div class="col-xs-2">
+      </div><!--[end].col-xs-2-->
+      <div class="col-xs-8">
+        <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+          <li class="disabled"><a href="#step-1" class="disabled_disabled">
+        	  <h4 class="list-group-item-heading">会員情報の入力</h4>
+          </a></li>
+          <li class="disabled"><a href="#step-2" class="disabled_disabled">
+            <h4 class="list-group-item-heading">入力内容の確認</h4>
+          </a></li>
+          <li class="active"><a href="#step-3" class="active_active">
+            <h4 class="list-group-item-heading">登録完了</h4>
+          </a></li>
+        </ul>
+      </div><!--[end].col-xs-8-->
+      <div class="col-xs-2">
+      </div><!--[end].col-xs-2-->
+    </div><!--[end].row form-group-->
     <div class="row setup-content" id="step-3">
       <div class="col-xs-12">
         <div class="col-xs-2">
@@ -55,7 +55,7 @@
 
       </div><!--[end].col-xs-12-->
     </div><!--[end]row setup-content #step-3-->
-</div><!--[end].container #wrapper-->
+  </div><!--[end].container #wrapper-->
 
   <script src="../assets/js/jquery-3.1.1.js"></script>
   <script src="../assets/js/jquery-migrate-1.4.1.js"></script>
